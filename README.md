@@ -128,7 +128,7 @@ For selection there are two constructors. The first constructor `Sel1` selects t
 progDual :: STTerm m ('Cap '[] (Int :!> Off '[Int :?> r, String :?> r])) ('Cap '[] r) ()
 progDual = do
   send 0
-  offS recv (offZ recv)
+  offS (recv >> return ()) (offZ (recv >> return ()))
 ```
 
 An offering must implement all branches as it is leaving the choice to implement a specific branch up to someone else. How this is implemented depends on the interpreter of course. For the interactive interpreter, the user would choose the branch.
@@ -167,6 +167,6 @@ sendChar = recurse go
   where
     go = do
       send 'c'
-      offS (var0 >> sendChar) (offZ $ weaken0 >> eps0)
+      offS (var0 >> go) (offZ $ weaken0 >> eps0)
 ```
 In this example we make use of almost all session types. We first delimit the scope of recursion, do a send and then offer to either recurse or leave the recursion followed by ending the protocol. Strictly speaking it isn't necessary to use a weaken here, but without it the context in the post-state would be non-empty. Usually you would want to use a weaken to have the `V` session type recurse back to a different `R`.
