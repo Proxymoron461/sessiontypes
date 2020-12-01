@@ -1,5 +1,7 @@
 # Introduction
 
+This repository is a fork of https://github.com/Ferdinand-vW/sessiontypes.
+
 Sessiontypes is a Haskell library that provides a deep embedded domain-specific language for writing session typed programs.
 A session typed program is a program annotated with session types. A session type describes a communication protocol at the type-level.
 The motivation for using session types is that it gives you a static guarantee that a program correctly implements a protocol. It may even guarantee
