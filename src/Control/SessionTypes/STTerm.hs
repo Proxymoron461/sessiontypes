@@ -46,7 +46,7 @@ import Data.Typeable
 --    * Branching: `Sel1`, `Sel2`, `OffZ` and `OffS`
 --    * Recursion: `Rec`, `Weaken` and `Var`
 --    * Unsession typed: `Ret` and `Lift`
-data STTerm :: (Type -> Type) -> Cap a_1 -> Cap a_1 -> Type -> Type where
+data STTerm :: (Type -> Type) -> Cap Type -> Cap Type -> Type -> Type where
   -- | The constructor for sending messages. It is annotated with the send session type (`:!>`).
   --
   -- It takes as an argument, the message to send, of type equal to the first argument of `:!>` and the continuing `STTerm` that is session typed with the second argument of `:!>`.
